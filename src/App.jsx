@@ -6,6 +6,7 @@ import Home from "./pages/Home";
 import DistrictRoute from "./pages/District";
 import Place from "./pages/Place";
 import NotFound from "./pages/NotFound";
+import SearchPage from "./pages/SearchPage";
 
 function ScrollToTop() {
   const { pathname, state } = useLocation();
@@ -24,6 +25,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/district/:id" element={<DistrictRoute />} />
         <Route path="/place/:id" element={<Place />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />

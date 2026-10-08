@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   IMAGES, categoryMeta, categoryOrder, districts, places, placesInDistrict, firstDistrictOf,
 } from "../data/data";
-import { ArrowRight, ArrowUpRight, MapPin } from "../components/Icons";
+import { ArrowRight, ArrowUpRight, MapPin, Search } from "../components/Icons";
 import SectionLink from "../components/SectionLink";
 import FeedbackForm from "../components/FeedbackForm";
 
@@ -11,6 +11,13 @@ const h2Style = { fontFamily: "var(--font-heading)", fontSize: "clamp(1.75rem,4v
 
 export default function Home() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const onSearch = (e) => {
+    e.preventDefault();
+    const q = new FormData(e.currentTarget).get("q").trim();
+    navigate(q ? `/search?q=${encodeURIComponent(q)}` : "/search");
+  };
 
   // Arrived from another page via a section link: scroll to that section.
   useEffect(() => {
@@ -30,6 +37,11 @@ export default function Home() {
             <p className="lead">
               Beaches, waterfalls, wildlife sanctuaries, dams and centuries of heritage — with the timings, travel info and facilities you need to actually get there.
             </p>
+            <form className="hero-search" role="search" onSubmit={onSearch}>
+              <Search />
+              <input name="q" type="search" placeholder="Search waterfalls, forts, Munnar…" aria-label="Search destinations" />
+              <button type="submit" className="btn btn-primary btn-sm">Search</button>
+            </form>
             <div className="hero-actions">
               <SectionLink to="districts" className="btn btn-primary">Browse districts <ArrowRight /></SectionLink>
               <SectionLink to="categories" className="btn btn-ghost">Explore by category</SectionLink>

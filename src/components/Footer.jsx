@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { districts } from "../data/data";
-import { Compass } from "./Icons";
+import Logo from "./Logo";
 import SectionLink from "./SectionLink";
 
 const YEAR = new Date().getFullYear();
@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="foot-grid">
           <div>
             <div className="foot-brand">
-              <span className="brand-mark"><Compass /></span>
+              <Logo size={38} />
               <span className="brand-name">Kerala Utility Hub</span>
             </div>
             <p className="foot-about">
@@ -32,6 +32,7 @@ export default function Footer() {
             <ul className="foot-list">
               <li><SectionLink to="categories">Browse by category</SectionLink></li>
               <li><SectionLink to="districts">All 14 districts</SectionLink></li>
+              <li><Link to="/search">Search destinations</Link></li>
               <li>
                 <a href="#/" onClick={(e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: "smooth" }); }}>
                   Back to top
